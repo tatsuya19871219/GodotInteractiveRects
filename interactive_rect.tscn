@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsdcldtm7vucj"]
+
+[ext_resource type="Script" path="res://interactive_rect.gd" id="1_pia7b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mky5"]
+size = Vector2(100, 100)
+
+[node name="InteractiveRect" type="Area2D"]
+collision_mask = 0
+script = ExtResource("1_pia7b")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterMarker" type="ColorRect" parent="ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 1, 0.827451)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0mky5")
+debug_color = Color(0.356863, 0.482353, 0.992157, 0.419608)
+
+[node name="DebugLabel" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RotateTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="ColorRect" to="." method="_on_color_rect_mouse_entered"]
+[connection signal="timeout" from="RotateTimer" to="." method="_on_rotate_timer_timeout"]
