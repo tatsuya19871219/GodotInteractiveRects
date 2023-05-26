@@ -1,7 +1,6 @@
 extends Node
 
 @export var rect_size : Vector2
-#@export var margin_ratio : float
 @export var spacing_ratio : float
 @export var rect_scene : PackedScene
 var screen_size
@@ -58,5 +57,4 @@ func hit_rect(rect):
 
 func _on_debug_timer_timeout():
 	#$DebugLabel.text = str(get_viewport().get_mouse_position())
-	#$Cursor.position = get_viewport().get_mouse_position()
 	$DebugLabel.text = str($Cursor.velocity.length())
